@@ -85,17 +85,20 @@
         .circle-game-btn:active { transform: scale(0.92); }
         .circle-game-btn.poker { border-color: rgba(96, 165, 250, 0.6); }
         .circle-game-btn.bj { border-color: rgba(255, 215, 0, 0.6); }
+        .circle-game-btn.slots { border-color: rgba(236, 72, 153, 0.6); }
+        .circle-game-btn.roulette { border-color: rgba(239, 68, 68, 0.6); }
+        .circle-game-btn.dice { border-color: rgba(168, 85, 247, 0.6); }
 
-        .circle-icon { font-size: 30px; display: inline-block; }
+        .circle-icon { font-size: 28px; display: inline-block; }
 
         /* CENTER HERO */
         .center-casino-hero {
             grid-column: span 2; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; padding: 10px 0;
+            align-items: center; justify-content: center; padding: 6px 0;
         }
 
         .hero-icon-animated {
-            font-size: 50px;
+            font-size: 46px;
             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
             animation: floatAnimation 3s ease-in-out infinite;
         }
@@ -152,7 +155,7 @@
         .seat.empty { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.4); }
 
         .playing-card {
-            width: 36px; height: 50px; background: #fff; border-radius: 5px; color: #1e293b;
+            width: 34px; height: 48px; background: #fff; border-radius: 5px; color: #1e293b;
             display: flex; flex-direction: column; justify-content: space-between; padding: 2px; font-weight: 900; font-size: 10px;
         }
         .playing-card.red { color: #f43f5e; }
@@ -180,22 +183,43 @@
             <button class="btn btn-green" onclick="openMultiplayerLobby()">Войти</button>
         </div>
 
-        <div class="section-title">♠️ Выберите Режим 🎰</div>
+        <div class="section-title">♠️ Выберите Игру 🎰</div>
 
         <div class="circle-games-grid">
+            <!-- 1. Онлайн Покер -->
             <div class="circle-game-btn poker" onclick="openMultiplayerLobby()">
                 <div class="circle-icon">🌐</div>
                 <div class="circle-name">Онлайн<br>Покер</div>
             </div>
 
-            <div class="circle-game-btn bj" onclick="alert('Скоро появится!')">
+            <!-- 2. Блэкджек -->
+            <div class="circle-game-btn bj" onclick="alert('Запуск Блэкджека!')">
                 <div class="circle-icon">🃏</div>
-                <div class="circle-name">Блэкджек<br>Соло</div>
+                <div class="circle-name">Блэкджек<br>21</div>
             </div>
 
+            <!-- Центральный элемент -->
             <div class="center-casino-hero">
                 <div class="hero-icon-animated">👑</div>
-                <div class="hero-badge">ROYAL LIVE</div>
+                <div class="hero-badge">ROYAL CLUB</div>
+            </div>
+
+            <!-- 3. Слоты -->
+            <div class="circle-game-btn slots" onclick="alert('Запуск Игровых Автоматов!')">
+                <div class="circle-icon">🎰</div>
+                <div class="circle-name">Слоты<br>777</div>
+            </div>
+
+            <!-- 4. Рулетка -->
+            <div class="circle-game-btn roulette" onclick="alert('Запуск Рулетки!')">
+                <div class="circle-icon">🎡</div>
+                <div class="circle-name">Рулетка<br>Live</div>
+            </div>
+
+            <!-- 5. Кости (Dice) -->
+            <div class="circle-game-btn dice" style="grid-column: span 2;" onclick="alert('Запуск Игры в Кости!')">
+                <div class="circle-icon">🎲</div>
+                <div class="circle-name">Кости / Craps</div>
             </div>
         </div>
     </div>
@@ -203,7 +227,7 @@
     <!-- VIEW 2: Multiplayer Lobby & Table -->
     <div class="view" id="viewLobby">
         <div class="section-title">Онлайн Стол #<span id="roomCode">777</span></div>
-        <div id="connectionStatus" style="text-align:center; font-size:11px; color:#10b981;">● Подключено к серверу</div>
+        <div id="connectionStatus" style="text-align:center; font-size:11px; color:#10b981;">● Подключено к VPS (5.181.21.243)</div>
 
         <div class="poker-multi-table-square">
             <div style="font-weight:900; font-size: 12px; color:var(--accent-gold);">БАНК: <span id="tablePot">0</span> 🪙</div>
@@ -239,9 +263,8 @@
             document.getElementById(viewId).classList.add('active');
         }
 
-        /* --- SOCKET.IO СЕРВЕР --- */
-        // Замени локальный адрес на реальный URL сервера, например: https://my-casino-server.onrender.com
-        const SERVER_URL = "http://5.181.21.243:3000"; 
+        /* --- SOCKET.IO СЕРВЕР (Твой VPS) --- */
+        document.getElementById('connectionStatus').innerText = "● Подключено к VPS (5.181.21.243)"; 
         let socket = null;
         let currentRoomId = "room_1";
 
@@ -252,19 +275,17 @@
                 socket = io(SERVER_URL);
 
                 socket.on('connect', () => {
-                    document.getElementById('connectionStatus').innerText = "● Подключено к серверу";
+                    document.getElementById('connectionStatus').innerText = "● Подключено к VPS (2.5.181.212)";
                     document.getElementById('connectionStatus').style.color = "#10b981";
                     
-                    // Присоединяемся к комнате
                     socket.emit('join_room', { roomId: currentRoomId, userName: myName, gameType: 'poker' });
                 });
 
                 socket.on('disconnect', () => {
-                    document.getElementById('connectionStatus').innerText = "○ Переподключение...";
+                    document.getElementById('connectionStatus').innerText = "○ Переподключение к VPS...";
                     document.getElementById('connectionStatus').style.color = "#f43f5e";
                 });
 
-                // Получение актуального состояния стола
                 socket.on('room_state', (room) => {
                     updateTableUI(room);
                 });
@@ -282,14 +303,12 @@
         function updateTableUI(room) {
             document.getElementById('tablePot').innerText = room.pot;
 
-            // Очищаем места
             for (let i = 0; i < 5; i++) {
                 const seatEl = document.getElementById(`seat${i}`);
                 seatEl.className = `seat s${i+1} empty`;
                 seatEl.innerHTML = "Пусто";
             }
 
-            // Рендерим текущих игроков
             room.players.forEach((player, index) => {
                 if (index < 5) {
                     const seatEl = document.getElementById(`seat${index}`);
@@ -308,7 +327,6 @@
                 }
             });
 
-            // Рендерим общие карты
             const commEl = document.getElementById('tableCommunityCards');
             commEl.innerHTML = room.communityCards.map(c => `
                 <div class="playing-card ${c.isRed ? 'red' : ''}">
