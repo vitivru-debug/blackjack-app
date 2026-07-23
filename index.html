@@ -227,7 +227,7 @@
     <!-- VIEW 2: Multiplayer Lobby & Table -->
     <div class="view" id="viewLobby">
         <div class="section-title">Онлайн Стол #<span id="roomCode">777</span></div>
-        <div id="connectionStatus" style="text-align:center; font-size:11px; color:#10b981;">● Подключено к VPS (5.181.21.243)</div>
+        <div id="connectionStatus" style="text-align:center; font-size:11px; color:#10b981;">●</div>
 
         <div class="poker-multi-table-square">
             <div style="font-weight:900; font-size: 12px; color:var(--accent-gold);">БАНК: <span id="tablePot">0</span> 🪙</div>
@@ -275,7 +275,7 @@
                 socket = io(SERVER_URL);
 
                 socket.on('connect', () => {
-                    document.getElementById('connectionStatus').innerText = "● Подключено к VPS (2.5.181.212)";
+                    document.getElementById('connectionStatus').innerText = "● Подключено к VPS ";
                     document.getElementById('connectionStatus').style.color = "#10b981";
                     
                     socket.emit('join_room', { roomId: currentRoomId, userName: myName, gameType: 'poker' });
