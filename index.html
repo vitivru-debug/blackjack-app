@@ -33,7 +33,7 @@
             overflow-x: hidden;
         }
 
-        /* Top Header */
+        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -44,7 +44,7 @@
             padding: 10px 16px;
             border-radius: 24px;
             margin-bottom: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .user-box { display: flex; align-items: center; gap: 10px; }
@@ -62,9 +62,7 @@
             border: 1.5px solid var(--accent-gold);
             padding: 6px 16px; border-radius: 20px;
             color: var(--accent-gold); font-weight: 800;
-            font-size: 16px;
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
-            display: flex; align-items: center; gap: 6px;
+            font-size: 16px; display: flex; align-items: center; gap: 6px;
         }
 
         .view { display: none; flex-direction: column; gap: 14px; }
@@ -76,41 +74,20 @@
             display: flex; align-items: center; gap: 8px;
         }
         
-        .games-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
+        .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-        /* Game Cards UI */
         .game-card {
             position: relative;
             background: linear-gradient(145deg, rgba(26, 35, 60, 0.8), rgba(15, 22, 39, 0.9));
             border: 1px solid var(--glass-border);
-            border-radius: 22px;
-            padding: 18px 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(12px);
-            overflow: hidden;
+            border-radius: 22px; padding: 18px 12px;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            text-align: center; cursor: pointer; transition: all 0.25s ease;
+            backdrop-filter: blur(12px); overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
-        .game-card::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-            transition: 0.5s;
-        }
-
         .game-card:active { transform: scale(0.95); }
-        .game-card:hover::before { left: 100%; }
-
         .game-card.featured {
             grid-column: span 2;
             background: linear-gradient(135deg, rgba(147, 51, 234, 0.3), rgba(15, 23, 42, 0.9));
@@ -125,45 +102,26 @@
             background: linear-gradient(135deg, #f43f5e, #e11d48);
             font-size: 9px; font-weight: 900; padding: 3px 7px;
             border-radius: 8px; text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(244, 63, 94, 0.4);
         }
 
-        .game-icon { 
-            font-size: 38px; 
-            filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4));
-            transition: transform 0.2s;
-        }
-
-        .game-card:active .game-icon { transform: scale(1.15) rotate(-5deg); }
-        .game-name { font-weight: 800; font-size: 15px; letter-spacing: 0.3px; }
+        .game-icon { font-size: 38px; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4)); }
+        .game-name { font-weight: 800; font-size: 15px; }
         .game-sub { font-size: 11px; opacity: 0.6; }
 
-        /* Banner */
         .multiplayer-banner {
             background: linear-gradient(135deg, #059669, #047857, #0f766e);
-            background-size: 200% 200%;
-            animation: gradientShift 6s ease infinite;
-            border-radius: 22px;
-            padding: 16px 18px;
+            border-radius: 22px; padding: 16px 18px;
             display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
             border: 1px solid rgba(255,255,255,0.2);
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Buttons */
         .btn {
             background: linear-gradient(135deg, #f59e0b, #d97706);
             color: white; border: none; padding: 14px 22px;
             border-radius: 16px; font-weight: 800; cursor: pointer;
             font-family: inherit; transition: all 0.15s;
             box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
             font-size: 15px;
         }
 
@@ -172,60 +130,76 @@
         .btn-danger { background: linear-gradient(135deg, #f43f5e, #e11d48); box-shadow: 0 6px 20px rgba(244, 63, 94, 0.35); }
         .btn-green { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); }
 
-        /* Game Shell Container */
         .game-shell {
-            min-height: 410px;
+            min-height: 430px;
             background: linear-gradient(180deg, rgba(23, 31, 56, 0.9), rgba(12, 17, 33, 0.95));
-            border-radius: 28px;
-            border: 1.5px solid var(--glass-border);
-            padding: 20px;
-            display: flex; flex-direction: column;
+            border-radius: 28px; border: 1.5px solid var(--glass-border);
+            padding: 16px; display: flex; flex-direction: column;
             align-items: center; justify-content: space-between;
-            backdrop-filter: blur(25px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            backdrop-filter: blur(25px); box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        /* --- VISUAL CARDS UI --- */
+        .table-felt {
+            width: 100%; background: radial-gradient(circle, #065f46, #022c22);
+            border-radius: 22px; border: 2px solid #059669; padding: 12px;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.7);
+            display: flex; flex-direction: column; gap: 14px;
+        }
+
+        .hand-container {
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+
+        .cards-row {
+            display: flex; gap: 8px; justify-content: center;
+            min-height: 72px; flex-wrap: wrap;
+        }
+
+        .playing-card {
+            width: 50px; height: 72px; background: #ffffff;
+            border-radius: 8px; color: #1e293b;
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 4px 6px; font-weight: 900; font-size: 13px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            animation: dealCard 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
             position: relative;
         }
 
-        /* --- SLOTS GRAPHICS --- */
+        .playing-card.red { color: #f43f5e; }
+        
+        .playing-card.back {
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            border: 2px solid #3b82f6;
+            display: flex; align-items: center; justify-content: center;
+            color: #60a5fa; font-size: 20px;
+        }
+
+        @keyframes dealCard {
+            0% { transform: translateY(-30px) scale(0.5); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        /* SLOTS, ROULETTE, DICE UI */
         .slots-machine {
             background: linear-gradient(180deg, #2a1b40, #130c21);
-            border: 4px solid var(--accent-gold);
-            border-radius: 22px;
-            padding: 16px;
-            box-shadow: 0 0 35px rgba(255, 215, 0, 0.3), inset 0 0 20px rgba(0,0,0,0.9);
-            width: 100%; max-width: 280px;
+            border: 4px solid var(--accent-gold); border-radius: 22px; padding: 16px;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.3); width: 100%; max-width: 280px;
         }
-
-        .slots-header {
-            text-align: center; font-size: 11px; font-weight: 900;
-            color: var(--accent-gold); letter-spacing: 2px; margin-bottom: 10px;
-        }
-
         .slots-window {
             display: flex; gap: 8px; justify-content: center;
             background: #000; padding: 12px; border-radius: 14px;
-            border: 2px solid rgba(255,255,255,0.1);
         }
-
         .slot-reel {
-            flex: 1; height: 80px;
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
+            flex: 1; height: 80px; background: linear-gradient(180deg, #1e293b, #0f172a, #1e293b);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
             font-size: 38px; border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
-
         .slot-reel.blur { filter: blur(5px); transform: scaleY(1.1); }
 
-        /* --- ROULETTE GRAPHICS --- */
-        .roulette-container {
-            position: relative; width: 200px; height: 200px;
-            display: flex; align-items: center; justify-content: center; margin: 10px 0;
-        }
-
+        .roulette-container { position: relative; width: 190px; height: 190px; margin: 10px 0; }
         .roulette-wheel {
-            width: 100%; height: 100%; border-radius: 50%;
-            border: 7px solid #d97706;
+            width: 100%; height: 100%; border-radius: 50%; border: 7px solid #d97706;
             background: conic-gradient(
                 #f43f5e 0deg 20deg, #1e293b 20deg 40deg, #f43f5e 40deg 60deg, #1e293b 60deg 80deg,
                 #f43f5e 80deg 100deg, #1e293b 100deg 120deg, #10b981 120deg 140deg, #f43f5e 140deg 160deg,
@@ -234,73 +208,35 @@
                 #1e293b 320deg 340deg, #f43f5e 340deg 360deg
             );
             transition: transform 3.5s cubic-bezier(0.1, 0.9, 0.2, 1);
-            box-shadow: 0 0 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
         }
-
-        .roulette-center {
-            position: absolute; width: 50px; height: 50px;
-            background: radial-gradient(circle, #ffd700, #b45309);
-            border-radius: 50%; border: 3px solid #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.8);
-        }
-
-        .roulette-pointer {
-            position: absolute; top: -12px; font-size: 22px; z-index: 10;
-            color: var(--accent-gold); filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9));
-        }
+        .roulette-pointer { position: absolute; top: -12px; left: calc(50% - 11px); font-size: 22px; z-index: 10; color: var(--accent-gold); }
 
         .bet-selector { display: flex; gap: 8px; width: 100%; margin: 10px 0; }
-        .bet-opt {
-            flex: 1; padding: 12px 6px; border-radius: 14px; font-weight: 800; font-size: 12px;
-            border: 2px solid transparent; cursor: pointer; text-align: center; opacity: 0.5;
-            transition: all 0.2s;
-        }
+        .bet-opt { flex: 1; padding: 12px 6px; border-radius: 14px; font-weight: 800; font-size: 12px; border: 2px solid transparent; text-align: center; opacity: 0.5; }
         .bet-opt.active { opacity: 1; transform: scale(1.05); }
-        .bet-opt.red { background: #f43f5e; border-color: #fda4af; }
-        .bet-opt.black { background: #1e293b; border-color: #64748b; }
-        .bet-opt.green { background: #10b981; border-color: #6ee7b7; }
+        .bet-opt.red { background: #f43f5e; } .bet-opt.black { background: #1e293b; } .bet-opt.green { background: #10b981; }
 
-        /* --- DICE GRAPHICS --- */
         .dice-box { display: flex; gap: 24px; margin: 20px 0; }
         .dice-cube {
-            width: 75px; height: 75px;
-            background: radial-gradient(circle at 30% 30%, #ffffff, #cbd5e1);
+            width: 75px; height: 75px; background: radial-gradient(circle at 30% 30%, #ffffff, #cbd5e1);
             border-radius: 18px; display: flex; align-items: center; justify-content: center;
-            font-size: 36px; font-weight: 900; color: #0f172a;
-            box-shadow: 0 12px 25px rgba(0,0,0,0.5), inset 0 -5px 0 #94a3b8;
-            transition: transform 0.4s ease;
+            font-size: 36px; font-weight: 900; color: #0f172a; box-shadow: 0 12px 25px rgba(0,0,0,0.5);
         }
         .dice-cube.rolling { animation: roll3D 0.5s infinite linear; }
-        @keyframes roll3D {
-            0% { transform: rotate(0deg) scale(0.8); }
-            50% { transform: rotate(180deg) scale(1.15); }
-            100% { transform: rotate(360deg) scale(0.8); }
-        }
-
-        /* --- BLACKJACK TABLE GRAPHICS --- */
-        .table-felt {
-            width: 100%; background: radial-gradient(circle, #065f46, #022c22);
-            border-radius: 20px; border: 2px solid #059669; padding: 16px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.6); margin-bottom: 10px;
-        }
+        @keyframes roll3D { 0% { transform: rotate(0deg) scale(0.8); } 50% { transform: rotate(180deg) scale(1.15); } 100% { transform: rotate(360deg) scale(0.8); } }
 
         .slots-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 15px 0; }
-        .player-slot {
-            aspect-ratio: 1; background: rgba(255,255,255,0.05);
-            border: 2px dashed rgba(255,255,255,0.2); border-radius: 14px;
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; font-size: 11px; text-align: center;
-        }
+        .player-slot { aspect-ratio: 1; background: rgba(255,255,255,0.05); border: 2px dashed rgba(255,255,255,0.2); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; }
         .player-slot.occupied { border-style: solid; border-color: var(--accent-gold); background: rgba(255, 215, 0, 0.1); }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
+    <!-- Header -->
     <div class="header">
         <div class="user-box">
             <div class="avatar" id="userAvatar">A</div>
-            <span id="userName" style="font-weight:800; font-size:15px;">Артур</span>
+            <span id="userName" style="font-weight:800; font-size:15px;">Игрок</span>
         </div>
         <div class="balance">🪙 <span id="balanceText">1000</span></div>
     </div>
@@ -310,7 +246,7 @@
         <div class="multiplayer-banner">
             <div>
                 <div style="font-weight:900; font-size:16px;">👥 Мультиплеер (До 5 чел)</div>
-                <div style="font-size:12px; opacity:0.9;">Играй в блэкджек с друзьями</div>
+                <div style="font-size:12px; opacity:0.9;">Комната для игры с друзьями</div>
             </div>
             <button class="btn" onclick="openMultiplayerLobby()">Создать</button>
         </div>
@@ -322,7 +258,7 @@
                 <div class="badge">TOP</div>
                 <div>
                     <div class="game-name">Блэкджек (Соло)</div>
-                    <div class="game-sub">Классический 21 против Дилера</div>
+                    <div class="game-sub">Карты против Дилера</div>
                 </div>
                 <div class="game-icon">🃏</div>
             </div>
@@ -352,15 +288,6 @@
                     <div class="game-sub">Craps комбинации</div>
                 </div>
             </div>
-
-            <div class="game-card" onclick="openGame('Покер')">
-                <div class="badge" style="background:#64748b">Скоро</div>
-                <div class="game-icon">🎴</div>
-                <div>
-                    <div class="game-name">Покер</div>
-                    <div class="game-sub">Holdem Соло</div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -369,7 +296,7 @@
         <div class="section-title">Лобби комнаты #<span id="roomCode">8842</span></div>
         <div style="font-size: 13px; opacity: 0.7;">Ожидание подключения игроков</div>
         <div class="slots-container" id="slotsContainer"></div>
-        <button class="btn btn-green" style="width: 100%; margin-top: 10px;" onclick="openGame('Блэкджек (Мультиплеер)')">▶ Начать игру</button>
+        <button class="btn btn-green" style="width: 100%; margin-top: 10px;" onclick="startSoloBlackjack()">▶ Начать игру</button>
         <button class="btn btn-secondary" style="width: 100%;" onclick="showView('viewMenu')">⬅ Главное меню</button>
     </div>
 
@@ -389,7 +316,6 @@
         const tg = window.Telegram?.WebApp;
         if (tg) { tg.ready(); tg.expand(); }
 
-        // Баланс
         let balance = parseInt(localStorage.getItem('casino_balance'));
         if (isNaN(balance)) { balance = 1000; }
         
@@ -404,7 +330,6 @@
             updateBalanceDisplay();
         }
 
-        // Данные пользователя
         if (tg?.initDataUnsafe?.user) {
             const u = tg.initDataUnsafe.user;
             document.getElementById('userName').innerText = u.first_name;
@@ -416,7 +341,6 @@
             document.getElementById(viewId).classList.add('active');
         }
 
-        /* --- Лобби --- */
         function openMultiplayerLobby() {
             showView('viewLobby');
             document.getElementById('roomCode').innerText = Math.floor(1000 + Math.random() * 9000);
@@ -430,13 +354,44 @@
             }
         }
 
-        /* --- БЛЭКДЖЕК (СОЛО) --- */
-        let playerScore = 0, dealerScore = 0, gameActive = false;
+        /* --- БЛЭКДЖЕК С ВИЗУАЛИЗАЦИЕЙ КАРТ --- */
+        let playerHand = [], dealerHand = [];
+        let bjActive = false;
         const betAmount = 100;
+        const suits = ['♠', '♥', '♦', '♣'];
+        const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+
+        function getRandomCard() {
+            const suit = suits[Math.floor(Math.random() * suits.length)];
+            const val = values[Math.floor(Math.random() * values.length)];
+            return { suit, val, isRed: suit === '♥' || suit === '♦' };
+        }
+
+        function calcHandScore(hand) {
+            let score = 0, aces = 0;
+            hand.forEach(c => {
+                if (['J', 'Q', 'K'].includes(c.val)) score += 10;
+                else if (c.val === 'A') { score += 11; aces++; }
+                else score += parseInt(c.val);
+            });
+            while (score > 21 && aces > 0) { score -= 10; aces--; }
+            return score;
+        }
+
+        function renderCardHTML(card, hide = false) {
+            if (hide) return `<div class="playing-card back">🂠</div>`;
+            return `
+                <div class="playing-card ${card.isRed ? 'red' : ''}">
+                    <div>${card.val}</div>
+                    <div style="align-self:center; font-size:16px;">${card.suit}</div>
+                    <div style="align-self:flex-end;">${card.val}</div>
+                </div>
+            `;
+        }
 
         function startSoloBlackjack() {
             showView('viewGame');
-            document.getElementById('currentGameTitle').innerText = "🃏 Блэкджек";
+            document.getElementById('currentGameTitle').innerText = "🃏 Блэкджек 21";
             renderBlackjackUI();
         }
 
@@ -444,68 +399,119 @@
             const area = document.getElementById('gameEngineArea');
             area.innerHTML = `
                 <div class="table-felt">
-                    <div style="text-align:center; margin-bottom:12px;">
-                        <div style="font-size:12px; opacity:0.8; color:#a7f3d0">ДИЛЕР</div>
-                        <div style="font-size:24px; font-weight:900;" id="dScore">0</div>
+                    <!-- Dealer Hand -->
+                    <div class="hand-container">
+                        <div style="font-size:12px; font-weight:800; color:#a7f3d0;">
+                            🎩 ДИЛЕР (<span id="dScore">0</span>)
+                        </div>
+                        <div class="cards-row" id="dealerCards"></div>
                     </div>
-                    <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:10px 0;">
-                    <div style="text-align:center;">
-                        <div style="font-size:12px; opacity:0.8; color:#a7f3d0">ВАШИ ОЧКИ</div>
-                        <div style="font-size:24px; font-weight:900;" id="pScore">0</div>
+
+                    <hr style="border:0; border-top:1px dashed rgba(255,255,255,0.2); margin:2px 0;">
+
+                    <!-- Player Hand -->
+                    <div class="hand-container">
+                        <div class="cards-row" id="playerCards"></div>
+                        <div style="font-size:12px; font-weight:800; color:#a7f3d0;">
+                            👤 ВЫ (<span id="pScore">0</span>)
+                        </div>
                     </div>
                 </div>
-                <div id="bjStatus" style="font-weight:800; min-height:24px; color:var(--accent-gold); text-align:center;">Ставка: 100 🪙</div>
+
+                <div id="bjStatus" style="font-weight:800; min-height:24px; color:var(--accent-gold); text-align:center;">
+                    Ставка: 100 🪙
+                </div>
+
                 <div style="display:flex; gap:8px; width:100%;">
                     <button class="btn" id="btnStart" style="flex:1;" onclick="bjDeal()">Раздача (100 🪙)</button>
-                    <button class="btn btn-green" id="btnHit" style="flex:1; display:none;" onclick="bjHit()">Ещё</button>
+                    <button class="btn btn-green" id="btnHit" style="flex:1; display:none;" onclick="bjHit()">Ещё карту</button>
                     <button class="btn btn-danger" id="btnStand" style="flex:1; display:none;" onclick="bjStand()">Хватит</button>
                 </div>
             `;
         }
 
+        function updateCardsDisplay(hideDealerSecondCard = true) {
+            const pRow = document.getElementById('playerCards');
+            const dRow = document.getElementById('dealerCards');
+
+            pRow.innerHTML = playerHand.map(c => renderCardHTML(c)).join('');
+            
+            if (hideDealerSecondCard && dealerHand.length > 1) {
+                dRow.innerHTML = renderCardHTML(dealerHand[0]) + renderCardHTML(null, true);
+                document.getElementById('dScore').innerText = calcHandScore([dealerHand[0]]);
+            } else {
+                dRow.innerHTML = dealerHand.map(c => renderCardHTML(c)).join('');
+                document.getElementById('dScore').innerText = calcHandScore(dealerHand);
+            }
+
+            document.getElementById('pScore').innerText = calcHandScore(playerHand);
+        }
+
         function bjDeal() {
             if (balance < betAmount) return alert("Недостаточно монет!");
             changeBalance(-betAmount);
-            playerScore = Math.floor(Math.random() * 8) + 12;
-            dealerScore = Math.floor(Math.random() * 7) + 10;
-            gameActive = true;
 
-            document.getElementById('pScore').innerText = playerScore;
-            document.getElementById('dScore').innerText = "❓";
-            document.getElementById('bjStatus').innerText = "Ваш ход! Тяните или останавливайтесь.";
+            playerHand = [getRandomCard(), getRandomCard()];
+            dealerHand = [getRandomCard(), getRandomCard()];
+            bjActive = true;
+
             document.getElementById('btnStart').style.display = 'none';
             document.getElementById('btnHit').style.display = 'block';
             document.getElementById('btnStand').style.display = 'block';
+            document.getElementById('bjStatus').innerText = "Тяните карту или останавливайтесь";
+
+            updateCardsDisplay(true);
+
+            if (calcHandScore(playerHand) === 21) {
+                bjEnd(true, "🎉 Блэкджек! Автоматическая победа!");
+            }
         }
 
         function bjHit() {
-            if (!gameActive) return;
-            playerScore += Math.floor(Math.random() * 9) + 1;
-            document.getElementById('pScore').innerText = playerScore;
-            if (playerScore > 21) bjEnd(false, "💥 Перебор! Вы проиграли.");
+            if (!bjActive) return;
+            playerHand.push(getRandomCard());
+            updateCardsDisplay(true);
+
+            if (calcHandScore(playerHand) > 21) {
+                bjEnd(false, "💥 Перебор! Вы проиграли.");
+            }
         }
 
         function bjStand() {
-            if (!gameActive) return;
-            dealerScore += Math.floor(Math.random() * 7) + 2;
-            document.getElementById('dScore').innerText = dealerScore;
-            if (dealerScore > 21 || playerScore > dealerScore) bjEnd(true, `🎉 Победа! У дилера ${dealerScore}`);
-            else if (playerScore === dealerScore) bjEnd('draw', `🤝 Ничья! (${playerScore})`);
-            else bjEnd(false, `🪦 Проигрыш! У дилера ${dealerScore}`);
+            if (!bjActive) return;
+
+            while (calcHandScore(dealerHand) < 17) {
+                dealerHand.push(getRandomCard());
+            }
+
+            updateCardsDisplay(false);
+
+            const pScore = calcHandScore(playerHand);
+            const dScore = calcHandScore(dealerHand);
+
+            if (dScore > 21 || pScore > dScore) {
+                bjEnd(true, `🎉 Победа! У дилера ${dScore}`);
+            } else if (pScore === dScore) {
+                bjEnd('draw', `🤝 Ничья! (По ${pScore} очков)`);
+            } else {
+                bjEnd(false, `🪦 Проигрыш! У дилера ${dScore}`);
+            }
         }
 
         function bjEnd(isWin, msg) {
-            gameActive = false;
+            bjActive = false;
+            updateCardsDisplay(false);
             document.getElementById('bjStatus').innerText = msg;
             document.getElementById('btnHit').style.display = 'none';
             document.getElementById('btnStand').style.display = 'none';
             document.getElementById('btnStart').style.display = 'block';
-            document.getElementById('btnStart').innerText = "Сыграть ещё (100 🪙)";
+            document.getElementById('btnStart').innerText = "Ещё раз (100 🪙)";
+
             if (isWin === true) { changeBalance(betAmount * 2); confetti(); }
             else if (isWin === 'draw') { changeBalance(betAmount); }
         }
 
-        /* --- ИГРОВОЙ ДВИЖОК: СЛОТЫ / РУЛЕТКА / КОСТИ --- */
+        /* --- СЛОТЫ / РУЛЕТКА / КОСТИ --- */
         let selectedRouletteBet = 'red';
         let isSpinning = false;
 
@@ -517,7 +523,7 @@
             if (gameName === 'Слоты') {
                 area.innerHTML = `
                     <div class="slots-machine">
-                        <div class="slots-header">★ ROYAL SLOTS 777 ★</div>
+                        <div style="text-align:center; font-size:11px; font-weight:900; color:var(--accent-gold); margin-bottom:8px;">★ ROYAL SLOTS ★</div>
                         <div class="slots-window">
                             <div class="slot-reel" id="reel1">🎰</div>
                             <div class="slot-reel" id="reel2">🎰</div>
@@ -534,14 +540,13 @@
                     <div class="roulette-container">
                         <div class="roulette-pointer">▼</div>
                         <div class="roulette-wheel" id="rWheel"></div>
-                        <div class="roulette-center"></div>
                     </div>
                     <div class="bet-selector">
                         <div class="bet-opt red active" onclick="selectRBet('red', this)">Красное (2x)</div>
                         <div class="bet-opt green" onclick="selectRBet('green', this)">Зеро (14x)</div>
                         <div class="bet-opt black" onclick="selectRBet('black', this)">Черное (2x)</div>
                     </div>
-                    <div id="rouletteStatus" style="font-weight:800; min-height:24px; color:var(--accent-gold); text-align:center;">Выберите цвет и крутите</div>
+                    <div id="rouletteStatus" style="font-weight:800; min-height:24px; color:var(--accent-gold); text-align:center;">Выберите цвет</div>
                     <button class="btn" style="width:100%;" onclick="spinRouletteAnimated()">Вращать (100 🪙)</button>
                 `;
             } else if (gameName === 'Кости') {
@@ -554,12 +559,9 @@
                     <div id="diceStatus" style="font-weight:800; min-height:24px; color:var(--accent-gold); text-align:center;">Испытайте удачу!</div>
                     <button class="btn" style="width:100%;" onclick="rollDiceAnimated()">Бросить (50 🪙)</button>
                 `;
-            } else {
-                area.innerHTML = `<h3>${gameName}</h3><p style="margin:20px 0;">Режим в разработке</p>`;
             }
         }
 
-        /* АНИМАЦИЯ СЛОТОВ */
         function spinSlotsAnimated() {
             if (isSpinning) return;
             if (balance < 50) return alert("Мало монет!");
@@ -567,9 +569,7 @@
             isSpinning = true;
 
             const symbols = ['7️⃣', '🍒', '🍋', '🔔', '💎', '🍇'];
-            const r1 = document.getElementById('reel1');
-            const r2 = document.getElementById('reel2');
-            const r3 = document.getElementById('reel3');
+            const r1 = document.getElementById('reel1'), r2 = document.getElementById('reel2'), r3 = document.getElementById('reel3');
             const status = document.getElementById('slotStatus');
 
             r1.classList.add('blur'); r2.classList.add('blur'); r3.classList.add('blur');
@@ -594,8 +594,7 @@
 
                     if (res1 === res2 && res2 === res3) {
                         const win = res1 === '7️⃣' ? 1000 : 500;
-                        changeBalance(win);
-                        confetti();
+                        changeBalance(win); confetti();
                         status.innerText = `🎉 ДЖЕКПОТ! Выигрыш ${win} 🪙!`;
                     } else {
                         status.innerText = "Не повезло, попробуй ещё!";
@@ -604,7 +603,6 @@
             }, 70);
         }
 
-        /* АНИМАЦИЯ РУЛЕТКИ */
         function selectRBet(type, el) {
             selectedRouletteBet = type;
             document.querySelectorAll('.bet-opt').forEach(b => b.classList.remove('active'));
@@ -643,8 +641,7 @@
                 if (selectedRouletteBet === winColor) {
                     const multiplier = winColor === 'green' ? 14 : 2;
                     const win = 100 * multiplier;
-                    changeBalance(win);
-                    confetti();
+                    changeBalance(win); confetti();
                     status.innerText = `🎉 Выпал ${winColor.toUpperCase()}! Выигрыш ${win} 🪙!`;
                 } else {
                     status.innerText = `🪦 Выпал ${winColor.toUpperCase()}! Проигрыш.`;
@@ -652,15 +649,13 @@
             }, 3500);
         }
 
-        /* АНИМАЦИЯ КОСТЕЙ */
         function rollDiceAnimated() {
             if (isSpinning) return;
             if (balance < 50) return alert("Мало монет!");
             changeBalance(-50);
             isSpinning = true;
 
-            const d1 = document.getElementById('dice1');
-            const d2 = document.getElementById('dice2');
+            const d1 = document.getElementById('dice1'), d2 = document.getElementById('dice2');
             const status = document.getElementById('diceStatus');
 
             d1.classList.add('rolling'); d2.classList.add('rolling');
@@ -676,8 +671,7 @@
                 isSpinning = false;
 
                 if (sum >= 8) {
-                    changeBalance(100);
-                    confetti();
+                    changeBalance(100); confetti();
                     status.innerText = `🎉 Выпало ${sum}! Выигрыш 100 🪙!`;
                 } else {
                     status.innerText = `🪦 Выпало ${sum}. Нужно минимум 8.`;
